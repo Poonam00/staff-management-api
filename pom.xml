@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>staff_management</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>staff management</name>
+	<version>0.0.1</version>
+	<name>staff_management</name>
 	<description>Spring boot project for staff management</description>
 
 	<properties>
