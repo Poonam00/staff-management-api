@@ -1,13 +1,27 @@
-# __staff-management-api__
+# staff-management-api
 An opensource api which provides various options to manage office/household help/staff.
 
-##__Steps to setup project__
+## Steps to setup project
+Following are the pre-requisites for setting up this project in you local machine :
+- Build Tool- Maven
+- Git Account
+- Jdk 8
 
-1. Go to https://start.spring.io and create a project with name _staff-management-api_
-![image](https://user-images.githubusercontent.com/25826850/82056858-283abc00-96e0-11ea-9202-7d8d1d6d3294.png)
-2. Import the project as _Existing Maven Projects_
-3. Maven Build the project and run the SpringApplication class with main method to check if the project is installed properly
-4. With the help of Actuators (helps monitor and manage the project), end points are exposed to check the health of the running project
-5. Profile helps to provide us with differnt environment's configuration setting. The one with active profile is picked and respective beans and properties are created.
-
----
+1. Firstly get the code from master branch to your local machine
+   * Execute below command in the terminal/git bash to download this project
+   ```
+   cd folder/to/clone-into/
+   git init
+   git clone <this project url>
+   ```
+2. Build the project using Maven build tool
+   * Execute below command to build the project
+   ```
+   mvn clean install
+   ```
+3. Run the jar created
+   ```
+   cd staff-management-api/target/
+   java -jar staff_management-0.0.1.jar
+   ```
+ ---
