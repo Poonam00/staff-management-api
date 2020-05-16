@@ -20,5 +20,5 @@ pre-requisites
    ```
 3. Run the jar
    ```
-   java -jar target/staff_management-x.x.x.jar 
+   java -jar target/staff_management-x.x.x.jar --spring.profiles.active=prod
    ```
