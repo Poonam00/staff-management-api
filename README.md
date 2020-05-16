@@ -22,6 +22,6 @@ Following are the pre-requisites for setting up this project in you local machin
 3. Run the jar created
    ```
    cd staff-management-api/target/
-   java -jar staff_management-0.0.1.jar
+   java -jar staff_management-x.x.x.jar
    ```
  ---
