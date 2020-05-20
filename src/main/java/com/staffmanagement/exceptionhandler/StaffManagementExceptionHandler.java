@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ExceptionHandlingController {
-	private final Logger log = LoggerFactory.getLogger(ExceptionHandlingController.class);
+public class StaffManagementExceptionHandler {
+	private final Logger log = LoggerFactory.getLogger(StaffManagementExceptionHandler.class);
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<String> handleAllExceptions(Exception ex) {
