@@ -1,4 +1,4 @@
-package com.staffmanagement.service;
+package com.staffmanagement.scheduler;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
@@ -13,26 +13,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class ScheduleService {
-	Logger log = LoggerFactory.getLogger(ScheduleService.class);
+public class CustomScheduler {
+	private final Logger log = LoggerFactory.getLogger(CustomScheduler.class);
 
-	ScheduledExecutorService scheduledThreadPool = Executors.newSingleThreadScheduledExecutor();
-	int limit;
+	private ScheduledExecutorService scheduledThreadPool = Executors.newSingleThreadScheduledExecutor();
+	private int limit;
 
 	public void processRequest(int lim) {
 		limit = lim;
-
 		scheduledThreadPool.scheduleWithFixedDelay(() -> print(), 0, 10, TimeUnit.SECONDS);
-
 	}
 
-	public void print() {
-		log.info("Task scheduling at : " + LocalDateTime.now());
-		log.info("Hello " + limit);
+	private void print() {
+		log.info("Task scheduled at : {} , Hello {}", LocalDateTime.now(), limit);
 		limit--;
 		if (limit == 0) {
 			scheduledThreadPool.shutdown();
 		}
 	}
-
 }
