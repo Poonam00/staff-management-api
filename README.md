@@ -22,3 +22,9 @@ pre-requisites
    ```
    java -jar target/staff_management-x.x.x.jar --spring.profiles.active=prod
    ```
+   
+   ---
+   
+## Api
+- /schedule</br>
+The post api process the request asynchronously in another thread and initiates a scheduler to perform task for certain number of times.
