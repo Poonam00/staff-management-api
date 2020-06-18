@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>org.staff.api</groupId>
 	<artifactId>staff_management</artifactId>
-	<version>0.3.0</version>
+	<version>0.4.0</version>
 	<name>staff_management</name>
 	<description>Spring boot project for staff management</description>
 
