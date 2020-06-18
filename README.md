@@ -2,9 +2,7 @@
 An opensource api which provides various options to manage office/household help/staff.
 
 ## Steps to setup project
-
-pre-requisites
-
+### pre-requisites
 - Build Tool- Maven
 - Git
 - Jdk 8
@@ -22,9 +20,67 @@ pre-requisites
    ```
    java -jar target/staff_management-x.x.x.jar --spring.profiles.active=prod
    ```
-   
-   ---
+ ---
    
 ## Api
 - /schedule</br>
 The post api process the request asynchronously in another thread and initiates a scheduler to perform task for certain number of times.
+
+ ---
+ ## CRUD Operation with Hibernate
+ ### Steps:
+ 1. Add Data-Jpa dependency to enable hibernate in spring boot project. ModelMapper is used to map VO/DTO to DAO object.
+      ```
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+         </dependency>
+         <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>2.3.5</version>
+         </dependency>
+      ```
+ 2. User h2 Database into project
+      ```
+         <dependency>
+               <groupId>com.h2database</groupId>
+               <artifactId>h2</artifactId>
+               <scope>runtime</scope>
+         </dependency>
+      ```   
+     add parameters in application.properties
+      ```    
+         spring.h2.console.enabled=true
+         spring.h2.console.path=/console
+      ```
+ 3. User Repository : 
+ 
+      We create a User named dao (data access object) bean and UserDTO named its dto (data transfer object). DTO/VO is the one which transfer the data between the processes or the classes. DAO/Entity is the object with interacts with the db to enable crud operaion.
+     
+     To perform CRUD operation we are going to make use of Http Methods:
+        
+    - POST : Create
+    - GET : Read
+    - PUT : Update
+    - DELETE : Delete
+    
+ ---
+ ## Liquibase
+ ### Description
+Liquibase is an open source version control tool for database schema migration. Using Change Log file, liquibase will 
+use it as configiration guidelines to make changes to the underlying database schema. The changesets files can be in various formats    including XML, JSON, YAML, and SQL. It creates its own 2 table for maintaining version and lock i.e DATABASECHANGELOG and DATABASECHANGELOGLOCK.
+ ### Steps:
+ 1. Add liquibase dependency 
+      ```
+         <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+         </dependency>
+      ``` 
+ 2.  Add parameters in application.properties. Default path is db/changelog/db.changelogmaster.yml
+      ```    
+        spring.liquibase.change-log=classpath:/db/changelog/changelog-master.xml
+      ```
+ 3. Create master databasechangelog xml file and other specific changeset file. Include these changeset files in the master file
+---
