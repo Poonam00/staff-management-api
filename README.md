@@ -41,7 +41,7 @@ The post api process the request asynchronously in another thread and initiates 
             <version>2.3.5</version>
          </dependency>
       ```
- 2. User h2 Database into project
+ 2. Use h2 Database into the project
       ```
          <dependency>
                <groupId>com.h2database</groupId>

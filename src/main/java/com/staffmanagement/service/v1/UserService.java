@@ -1,4 +1,4 @@
-package com.staffmanagement.service;
+package com.staffmanagement.service.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ import com.staffmanagement.repository.UserRepository;
 
 @Service
 @EnableJpaAuditing
-public class UserCrudService {
+public class UserService {
 
 	@Autowired
 	UserRepository userRepository;
 
-	public void addUser(User user) {
-		userRepository.save(user);
+	public User addUser(User user) {
+		return userRepository.save(user);
 	}
 
 	public User getUserById(Long userId) {
@@ -39,8 +39,8 @@ public class UserCrudService {
 		userRepository.deleteById(userId);
 	}
 
-	public void update(User user) {
-		userRepository.save(user);
+	public User update(User user) {
+		return userRepository.save(user);
 	}
 
 	public List<User> getAllUsers() {
