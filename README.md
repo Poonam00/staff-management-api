@@ -84,3 +84,37 @@ use it as configiration guidelines to make changes to the underlying database sc
       ```
  3. Create master databasechangelog xml file and other specific changeset file. Include these changeset files in the master file
 ---
+ ## Github Action
+ ### Description
+ This feature of Github can be used for CI/CD integration while commiting or pushing our code. 
+
+Github Action to build jar of code code while performing push operation
+ ### Steps:
+ 1. Create a WorkFlow File of yml type
+ .github/workflows/continuous-integration-workflow.yml
+ 
+ 2. Following is the syntax of maven build workflow
+      ```    
+        name: Java CI
+
+        on: [push]
+
+        jobs:
+            build:
+                runs-on: ubuntu-latest
+
+            steps:
+               - uses: actions/checkout@v2
+               - name: Set up JDK 1.8
+                 uses: actions/setup-java@v1
+                 with:
+                  java-version: 1.8
+               - name: Build with Maven
+               run: mvn -B package --file pom.xml
+      ```
+   3. Commit this file to the branch where you want your workflow to run.
+   
+   Whenever you try to push your code to that branch a maven action will be performed. If the file syntax or anything goes wrong, the workflow will fail
+   
+---
+
