@@ -10,6 +10,7 @@
 			<column name="id" valueNumeric="1" />
 			<column name="name" value="Tom" />
 			<column name="profession" value="Teacher" />
+			<column name="mobileno" value="1234567890" />
 			<column name="age" value="25" />
 			<column name="address" value="Gangtok,Sikkim" />
 		</insert>

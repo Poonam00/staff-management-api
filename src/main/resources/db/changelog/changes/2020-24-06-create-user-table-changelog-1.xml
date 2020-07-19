@@ -15,6 +15,7 @@
 				<constraints nullable="false" />
 			</column>
 			<column name="profession" type="VARCHAR(255)" />
+			<column name="mobileno" type="INT(10)" />
 			<column name="age" type="VARCHAR(255)" />
 			<column name="address" type="VARCHAR(255)" />
 			<column name="createddate" type="TIMESTAMP" />
