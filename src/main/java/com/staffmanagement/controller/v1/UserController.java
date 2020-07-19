@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.staffmanagement.dto.UserDTO;
 import com.staffmanagement.entity.User;
+import com.staffmanagement.jsonview.UserViews;
 import com.staffmanagement.service.v1.UserService;
 
 @RestController
@@ -30,6 +32,7 @@ public class UserController {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@JsonView(UserViews.Detail.class)
 	@PostMapping
 	public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userdto) {
 		userdto.setId(null);
@@ -38,6 +41,7 @@ public class UserController {
 		return new ResponseEntity<>(returnUserdto, HttpStatus.CREATED);
 	}
 
+	@JsonView(UserViews.Detail.class)
 	@PutMapping("/{id}")
 	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userdto, @PathVariable("id") Long id) {
 		User user = modelMapper.map(userdto, User.class);
@@ -46,6 +50,7 @@ public class UserController {
 		return new ResponseEntity<>(returnUserdto, HttpStatus.OK);
 	}
 
+	@JsonView(UserViews.Summary.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
 		User user = userService.getUserById(id);
@@ -53,6 +58,7 @@ public class UserController {
 		return new ResponseEntity<>(userdto, HttpStatus.OK);
 	}
 
+	@JsonView(UserViews.Summary.class)
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> getAllUsers() {
 		List<User> list = userService.getAllUsers();

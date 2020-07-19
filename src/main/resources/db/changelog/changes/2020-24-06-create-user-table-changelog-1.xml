@@ -17,7 +17,7 @@
 			<column name="profession" type="VARCHAR(255)" />
 			<column name="age" type="VARCHAR(255)" />
 			<column name="address" type="VARCHAR(255)" />
-			<column name="createdDate" type="TIMESTAMP" />
+			<column name="createddate" type="TIMESTAMP" />
 			<column name="modifieddate" type="TIMESTAMP" />
 
 		</createTable>

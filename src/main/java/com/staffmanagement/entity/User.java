@@ -26,7 +26,7 @@ public class User {
 
 	@CreatedDate
 	@Column(name = "CREATEDDATE", nullable = false, updatable = false, columnDefinition = "TIMESTAMP")
-	private Date createdDate;
+	private Date createddate;
 
 	@LastModifiedDate
 	private Date modifieddate;
