@@ -117,4 +117,8 @@ Github Action to build jar of code code while performing push operation
    Whenever you try to push your code to that branch a maven action will be performed. If the file syntax or anything goes wrong, the workflow will fail
    
 ---
+ ## @JsonView
+ ### Description
+ @JsonView to limit or control fields display for different views.
+
 
