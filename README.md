@@ -64,9 +64,21 @@ The post api process the request asynchronously in another thread and initiates 
     - GET : Read
     - PUT : Update
     - DELETE : Delete
-    
+ 
  ---
- ## Liquibase
+ ## Hibernate Association Mapping
+ Always use Set to denote a collection instead of list. Hibernate removes all the associative entity and reinsert the remaining ones in case of list.
+- @OneToMany(Society to Customer) : The best way to use OneToMany mapping is to rely on ManytoOne to make it Bidirectional
+- @ManytoObe(Customer to Society) : default initialized by EAGER initialization. To improve performance we are using (fetch = FetchType.LAZY)
+- @ManytoMany(User to Customer) : We should use @JoinTable to prevent creation of separate table for maintaining the foreign keys between the entites
+- @OneToOne
+
+## Component Mapping
+@Emdedded and @Embeddable(User to Addesss) : the address fields are shown in the User table only. Separate table is not created for Address.
+
+---
+
+## Liquibase
  ### Description
 Liquibase is an open source version control tool for database schema migration. Using Change Log file, liquibase will 
 use it as configiration guidelines to make changes to the underlying database schema. The changesets files can be in various formats    including XML, JSON, YAML, and SQL. It creates its own 2 table for maintaining version and lock i.e DATABASECHANGELOG and DATABASECHANGELOGLOCK.
