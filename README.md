@@ -69,7 +69,7 @@ The post api process the request asynchronously in another thread and initiates 
  ## Hibernate Association Mapping
  Always use Set to denote a collection instead of list. Hibernate removes all the associative entity and reinsert the remaining ones in case of list.
 - @OneToMany(Society to Customer) : The best way to use OneToMany mapping is to rely on ManytoOne to make it Bidirectional
-- @ManytoObe(Customer to Society) : default initialized by EAGER initialization. To improve performance we are using (fetch = FetchType.LAZY)
+- @ManytoOne(Customer to Society) : default initialized by EAGER type. To improve performance we are using (fetch = FetchType.LAZY)
 - @ManytoMany(User to Customer) : We should use @JoinTable to prevent creation of separate table for maintaining the foreign keys between the entites
 - @OneToOne
 The @OneToMany and @ManyToMany associations are defaulted to LAZY loading; and @OneToOne and @ManyToOne are defaulted to EAGER loading.
