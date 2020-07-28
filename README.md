@@ -72,9 +72,8 @@ The post api process the request asynchronously in another thread and initiates 
 - @ManytoObe(Customer to Society) : default initialized by EAGER initialization. To improve performance we are using (fetch = FetchType.LAZY)
 - @ManytoMany(User to Customer) : We should use @JoinTable to prevent creation of separate table for maintaining the foreign keys between the entites
 - @OneToOne
-Also note that @OneToMany and @ManyToMany associations are defaulted to LAZY loading; and @OneToOne and @ManyToOne are defaulted to EAGER loading.
-We can change this as
-@OneToMany(  fetch = FetchType.LAZY )
+The @OneToMany and @ManyToMany associations are defaulted to LAZY loading; and @OneToOne and @ManyToOne are defaulted to EAGER loading.
+We can change this as @OneToMany(  fetch = FetchType.LAZY )
 
 ## Component Mapping
 @Emdedded and @Embeddable(User to Addesss) : the address fields are shown in the User table only. Separate table is not created for Address.
