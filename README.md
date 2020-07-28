@@ -82,6 +82,7 @@ We can change this as
 ## CascadeType
 Cascading : When we perform some action on the target entity, the same action will be applied to the associated entity.
 For LAZY initialization mapping user CascadeType.All so that the child object is inserted on insertion of parent object.
+
 orphanRemoval=true: delete orphan(no longer connected to parent entity) child entity
 
 ---
@@ -140,7 +141,7 @@ Github Action to build jar of code code while performing push operation
 
 ### Jackson Json View
 ## Description
-- JsonView:  To limit or control fields display for different views of a model object
+- @JsonView:  To limit or control fields display for different views of a model object
 - @JsonInclude: To ignore the null fields, put @JsonInclude(JsonInclude.Include.NON_NULL) on class level or field level.
 - @JsonIgnore: To ignore few fields for all the Views.
 - @JsonPropertyOrder: To specify the order of fields of the model. We can also specify the alphabetic order of a collection type field by @JsonPropertyOrder(alphabetic = true)
