@@ -81,12 +81,7 @@ We can change this as
 
 ## CascadeType
 Cascading : When we perform some action on the target entity, the same action will be applied to the associated entity.
-- ALL
-- PERSIST
-- MERGE
-- REMOVE
-- REFRESH
-- DETACH
+For LAZY initialization mapping user CascadeType.All so that the child object is inserted on insertion of parent object.
 orphanRemoval=true: delete orphan(no longer connected to parent entity) child entity
 
 ---
