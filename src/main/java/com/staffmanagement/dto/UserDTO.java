@@ -1,6 +1,7 @@
 package com.staffmanagement.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -11,6 +12,7 @@ import com.staffmanagement.jsonview.UserViews;
 import lombok.Data;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "name","age", "address", "profession","mobileno","address" })
 public class UserDTO {
     @JsonView(UserViews.Summary.class)
@@ -22,7 +24,6 @@ public class UserDTO {
     @JsonView(UserViews.Summary.class)
 	private String profession;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonView(UserViews.Summary.class)
 	private String mobileno;
     
@@ -30,12 +31,14 @@ public class UserDTO {
 	private String age;
 
     @JsonView(UserViews.Detail.class)
-	private String address;
+	private AddressDTO address;
     
+    @JsonView(UserViews.Detail.class)
+	private Set<CustomerDTO> customers;
+
     @JsonIgnore
 	private Date createddate;
     
     @JsonIgnore
 	private Date modifieddate;
-
 }

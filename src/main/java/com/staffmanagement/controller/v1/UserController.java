@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.staffmanagement.dto.CustomerDTO;
 import com.staffmanagement.dto.UserDTO;
+import com.staffmanagement.entity.Customer;
 import com.staffmanagement.entity.User;
 import com.staffmanagement.jsonview.UserViews;
 import com.staffmanagement.service.v1.UserService;
@@ -72,4 +74,13 @@ public class UserController {
 		userService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
+	@GetMapping("/{id}/customers")
+	public ResponseEntity<List<CustomerDTO>> getCustomers(@PathVariable("id") Long userId) {
+		List<Customer> customers = userService.getCustomersByUserId(userId);
+		List<CustomerDTO> customerdtos = customers.stream()
+				.map(customer -> modelMapper.map(customer, CustomerDTO.class)).collect(Collectors.toList());
+		return new ResponseEntity<>(customerdtos, HttpStatus.OK);
+	}
+
 }

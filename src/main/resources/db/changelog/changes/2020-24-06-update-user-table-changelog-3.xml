@@ -10,7 +10,7 @@
             <dbms type="h2"/>
         </preConditions>
         <update tableName="user">
-            <column name="address" value="India"/>
+            <column name="age" valueNumeric="28"/>
             <where>name = 'Tom'</where>
         </update>
     </changeSet>

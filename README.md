@@ -117,12 +117,19 @@ Github Action to build jar of code code while performing push operation
    Whenever you try to push your code to that branch a maven action will be performed. If the file syntax or anything goes wrong, the workflow will fail
    
 ---
- ## Jackson Json View
- ### Description
- @JsonView:  To limit or control fields display for different views of a model object
- @JsonInclude: To ignore the null fields, put @JsonInclude(JsonInclude.Include.NON_NULL) on class level or field level.
- @JsonIgnore: To ignore few fields for all the Views.
- @JsonPropertyOrder: To specify the order of fields of the model. We can also specify the alphabetic order of a collection type field by @JsonPropertyOrder(alphabetic = true)
+
+### Jackson Json View
+## Description
+- JsonView:  To limit or control fields display for different views of a model object
+- @JsonInclude: To ignore the null fields, put @JsonInclude(JsonInclude.Include.NON_NULL) on class level or field level.
+- @JsonIgnore: To ignore few fields for all the Views.
+- @JsonPropertyOrder: To specify the order of fields of the model. We can also specify the alphabetic order of a collection type field by @JsonPropertyOrder(alphabetic = true)
+
+---
+
+
+
+
 
 
 

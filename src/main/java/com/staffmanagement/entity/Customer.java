@@ -5,17 +5,14 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -26,8 +23,7 @@ import lombok.Data;
 @Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class User {
-
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -41,19 +37,14 @@ public class User {
 
 	private String name;
 
-	private String profession;
+	private int familycount;
 
-	@NotBlank@Pattern(regexp = "(^$|[0-9]{10})")
-	private String mobileno;
+	private String flatno;
 
-	private int age;
+	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	private Society society;
 
-	@Embedded
-	private Address address;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_customer", joinColumns = { @JoinColumn(name = "fk_user") }, inverseJoinColumns = {
-			@JoinColumn(name = "fk_customer") })
-	private Set<Customer> customers;
+	@ManyToMany(mappedBy = "customers")
+	private Set<User> users;
 
 }

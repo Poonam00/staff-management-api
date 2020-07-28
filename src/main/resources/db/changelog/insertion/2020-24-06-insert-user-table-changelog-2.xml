@@ -10,9 +10,13 @@
 			<column name="id" valueNumeric="1" />
 			<column name="name" value="Tom" />
 			<column name="profession" value="Teacher" />
-			<column name="mobileno" value="1234567890" />
-			<column name="age" value="25" />
-			<column name="address" value="Gangtok,Sikkim" />
+			<column name="mobileno" valueNumeric="1234567890" />
+			<column name="age" valueNumeric="25" />
+			<column name="landmark" value="Thakurbari" />
+			<column name="city" value="Gangtok" />
+			<column name="state" value="Sikkim" />
+			<column name="zip" valueNumeric="737101" />
+
 		</insert>
 	</changeSet>
 </databaseChangeLog>

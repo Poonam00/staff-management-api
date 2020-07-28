@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.staffmanagement.entity.Customer;
 import com.staffmanagement.entity.User;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-	public List<Customer> findCustomersById(Long userId);
+	public List<User> findUsersById(Long id);
 }

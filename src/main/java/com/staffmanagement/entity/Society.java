@@ -1,7 +1,7 @@
 package com.staffmanagement.entity;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,11 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -26,7 +22,7 @@ import lombok.Data;
 @Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Society {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,21 +35,11 @@ public class User {
 	@LastModifiedDate
 	private Date modifieddate;
 
-	private String name;
-
-	private String profession;
-
-	@NotBlank@Pattern(regexp = "(^$|[0-9]{10})")
-	private String mobileno;
-
-	private int age;
+	private String societyname;
 
 	@Embedded
 	private Address address;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_customer", joinColumns = { @JoinColumn(name = "fk_user") }, inverseJoinColumns = {
-			@JoinColumn(name = "fk_customer") })
-	private Set<Customer> customers;
-
+	@OneToMany(mappedBy = "society",cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Customer> customers;
 }

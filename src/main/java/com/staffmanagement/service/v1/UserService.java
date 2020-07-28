@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.stereotype.Service;
 
+import com.staffmanagement.entity.Customer;
 import com.staffmanagement.entity.User;
 import com.staffmanagement.repository.UserRepository;
 
 @Service
-@EnableJpaAuditing
 public class UserService {
 
 	@Autowired
@@ -47,5 +46,11 @@ public class UserService {
 		List<User> list = new ArrayList<>();
 		userRepository.findAll().forEach(list::add);
 		return list;
+	}
+
+	public List<Customer> getCustomersByUserId(Long userId) {
+		List<Customer> customers = new ArrayList<>();
+		userRepository.findCustomersById(userId).forEach(customers::add);
+		return customers;
 	}
 }
