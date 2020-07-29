@@ -67,23 +67,23 @@ The post api process the request asynchronously in another thread and initiates 
  
  ---
  ## Hibernate Association Mapping
- Always use Set to denote a collection instead of list. Hibernate removes all the associative entity and reinsert the remaining ones in case of list.
+ Always use a Set to denote a collection instead of a List. Hibernate removes all the associative entity and reinsert the remaining ones in case of List.
 - `@OneToMany` (Society to Customer) : The best way to use OneToMany mapping is to rely on ManyToOne to make it Bidirectional
-- `@ManyToOne` (Customer to Society) : default initialized by EAGER type. To improve performance we are using `(fetch = FetchType.LAZY)`
+- `@ManyToOne` (Customer to Society) : It is default initialized by EAGER type. To improve performance we are using `(fetch = FetchType.LAZY)`
 - `@ManyToMany` (User to Customer) : We should use `@JoinTable` to prevent creation of separate table for maintaining the foreign keys between the entites
 - `@OneToOne`
 
-The `@OneToMany` and `@ManyToMany` associations are defaulted to **LAZY** loading; and `@OneToOne` and `@ManyToOne` are defaulted to **EAGER** loading.
+The `@OneToMany` and `@ManyToMany` associations are defaulted to **LAZY** loading and `@OneToOne` and `@ManyToOne` are defaulted to **EAGER** loading.
 We can change this by `@OneToMany(fetch = FetchType.LAZY )`
 
 ## Component Mapping
-`@Emdedded` and `@Embeddable` (User to Addesss) : the address fields are shown in the User table only. Separate table is not created for Address.
+`@Emdedded` and `@Embeddable` (User to Addesss) : The address fields are shown in the User table only. Separate table is not created for Address.
 
 ## CascadeType
 **Cascading** : When we perform some action on the target entity, the same action will be applied to the associated entity.
 For LAZY initialization mapping use `CascadeType.All` so that the child object is inserted on insertion of parent object.
 
-`orphanRemoval=true`: delete orphan(no longer connected to parent entity) child entity
+`orphanRemoval=true`: Delete orphan(no longer connected to parent entity) child entity.
 
 ---
 
