@@ -1,7 +1,7 @@
 package com.staffmanagement.dto;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -14,11 +14,9 @@ public class SocietyDTO {
 	private Long id;
 	private String societyname;
 	private AddressDTO address;
-	private List<CustomerDTO> customers;
-	
-    @JsonIgnore
+	private Set<CustomerDTO> customers;
+	@JsonIgnore
 	private Date createddate;
-    
-    @JsonIgnore
+	@JsonIgnore
 	private Date modifieddate;
 }

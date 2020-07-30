@@ -1,7 +1,7 @@
 package com.staffmanagement.entity;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
@@ -40,6 +41,7 @@ public class Society {
 	@Embedded
 	private Address address;
 
-	@OneToMany(mappedBy = "society",cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Customer> customers;
+	@OneToMany(mappedBy = "society", cascade = CascadeType.ALL, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	private Set<Customer> customers;
 }

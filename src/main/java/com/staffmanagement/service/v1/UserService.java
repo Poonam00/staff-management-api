@@ -1,13 +1,15 @@
 package com.staffmanagement.service.v1;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.staffmanagement.entity.Customer;
+import com.staffmanagement.dto.CustomerDTO;
+import com.staffmanagement.dto.UserDTO;
 import com.staffmanagement.entity.User;
 import com.staffmanagement.repository.UserRepository;
 
@@ -15,19 +17,37 @@ import com.staffmanagement.repository.UserRepository;
 public class UserService {
 
 	@Autowired
-	UserRepository userRepository;
+	private ModelMapper modelMapper;
 
-	public User addUser(User user) {
-		return userRepository.save(user);
+	@Autowired
+	private UserRepository userRepository;
+
+	public UserDTO addUser(UserDTO userdto) {
+		userdto.setId(null);
+		User user = modelMapper.map(userdto, User.class);
+		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
 
-	public User getUserById(Long userId) {
-		User user = new User();
-		Optional<User> opt = userRepository.findById(userId);
-		if (opt.isPresent()) {
-			user = opt.get();
-		}
-		return user;
+	public UserDTO update(UserDTO userdto, Long id) {
+		User user = modelMapper.map(userdto, User.class);
+		user.setId(id);
+		return modelMapper.map(userRepository.save(user), UserDTO.class);
+	}
+
+	public UserDTO getUserById(Long id) {
+		Optional<User> opt = userRepository.findById(id);
+		User user = opt.isPresent() ? opt.get() : new User();
+		return modelMapper.map(user, UserDTO.class);
+	}
+
+	public List<UserDTO> getAllUsers() {
+		return userRepository.findAll().stream().map(user -> modelMapper.map(user, UserDTO.class))
+				.collect(Collectors.toList());
+	}
+
+	public List<CustomerDTO> getCustomersByUserId(Long userId) {
+		return userRepository.findCustomersById(userId).stream()
+				.map(customer -> modelMapper.map(customer, CustomerDTO.class)).collect(Collectors.toList());
 	}
 
 	public long count() {
@@ -38,19 +58,4 @@ public class UserService {
 		userRepository.deleteById(userId);
 	}
 
-	public User update(User user) {
-		return userRepository.save(user);
-	}
-
-	public List<User> getAllUsers() {
-		List<User> list = new ArrayList<>();
-		userRepository.findAll().forEach(list::add);
-		return list;
-	}
-
-	public List<Customer> getCustomersByUserId(Long userId) {
-		List<Customer> customers = new ArrayList<>();
-		userRepository.findCustomersById(userId).forEach(customers::add);
-		return customers;
-	}
 }

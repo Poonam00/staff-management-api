@@ -5,18 +5,21 @@
 	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-	<changeSet author="admin" id="2">
-		<insert tableName="user">
-			<column name="id" valueNumeric="1" />
-			<column name="name" value="Tom" />
-			<column name="profession" value="Teacher" />
-			<column name="mobileno" valueNumeric="1234567890" />
-			<column name="age" valueNumeric="25" />
-			<column name="landmark" value="Thakurbari" />
-			<column name="city" value="Gangtok" />
-			<column name="state" value="Sikkim" />
-			<column name="zip" valueNumeric="737101" />
 
-		</insert>
+	<changeSet author="admin" id="1">
+		<createTable tableName="user_customer">
+
+			<column name="fk_user" type="bigint">
+				<constraints nullable="false"
+					foreignKeyName="fk_user" references="user(id)" />
+			</column>
+			<column name="fk_customer" type="bigint">
+				<constraints nullable="false"
+					foreignKeyName="fk_customer" references="customer(id)" />
+			</column>
+
+
+		</createTable>
+
 	</changeSet>
 </databaseChangeLog>

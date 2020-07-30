@@ -19,6 +19,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
@@ -41,10 +42,10 @@ public class Customer {
 
 	private String flatno;
 
-	@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Society society;
 
 	@ManyToMany(mappedBy = "customers")
+	@EqualsAndHashCode.Exclude
 	private Set<User> users;
-
 }

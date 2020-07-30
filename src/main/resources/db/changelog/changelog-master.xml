@@ -7,9 +7,15 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<include
-		file="/db/changelog/changes/2020-24-06-create-user-table-changelog-1.xml" />
+		file="/db/changelog/ddl/2020-24-06-create-user-table-changelog-1.xml" />
 	<include
-		file="/db/changelog/insertion/2020-24-06-insert-user-table-changelog-2.xml" />
+		file="/db/changelog/ddl/2020-30-07-create-society-table-changelog-2.xml" />
 	<include
-		file="/db/changelog/changes/2020-24-06-update-user-table-changelog-3.xml" />
+		file="/db/changelog/ddl/2020-30-07-create-customer-table-changelog-3.xml" />
+	<include
+		file="/db/changelog/ddl/2020-30-07-create-usercustomer-changelog-4.xml" />
+	<include
+		file="/db/changelog/dml/2020-24-06-insert-user-table-changelog-5.xml" />
+	<include
+		file="/db/changelog/dml/2020-24-06-update-user-table-changelog-6.xml" />
 </databaseChangeLog>

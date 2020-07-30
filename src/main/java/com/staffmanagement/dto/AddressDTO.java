@@ -9,12 +9,12 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AddressDTO {
-    @JsonView(UserViews.Detail.class)
+	@JsonView(UserViews.Detail.class)
 	private String landmark;
-    @JsonView(UserViews.Detail.class)
-    private String city;
-    @JsonView(UserViews.Detail.class)
+	@JsonView(UserViews.Detail.class)
+	private String city;
+	@JsonView(UserViews.Detail.class)
 	private String state;
-    @JsonView(UserViews.Detail.class)
+	@JsonView(UserViews.Detail.class)
 	private int zip;
 }

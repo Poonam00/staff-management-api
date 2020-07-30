@@ -14,17 +14,14 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerDTO {
 	private Long id;
-	
-    @JsonView(UserViews.Detail.class)
+	@JsonView(UserViews.Detail.class)
 	private String name;
 	private int familycount;
 	private String flatno;
 	private SocietyDTO society;
-	private Set<UserDTO	> users;
-	
-    @JsonIgnore
+	private Set<UserDTO> users;
+	@JsonIgnore
 	private Date createddate;
-    
-    @JsonIgnore
+	@JsonIgnore
 	private Date modifieddate;
 }
