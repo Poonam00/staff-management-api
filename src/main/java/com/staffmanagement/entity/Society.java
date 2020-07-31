@@ -11,9 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,7 +23,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Society {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,20 +36,12 @@ public class User {
 	@LastModifiedDate
 	private Date modifieddate;
 
-	private String name;
-
-	private String profession;
-
-	private String mobileno;
-
-	private int age;
+	private String societyname;
 
 	@Embedded
 	private Address address;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_customer", joinColumns = { @JoinColumn(name = "fk_user") }, inverseJoinColumns = {
-			@JoinColumn(name = "fk_customer") })
+	@OneToMany(mappedBy = "society", cascade = CascadeType.ALL, orphanRemoval = true)
 	@EqualsAndHashCode.Exclude
 	private Set<Customer> customers;
 }

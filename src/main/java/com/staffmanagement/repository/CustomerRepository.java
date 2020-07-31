@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.staffmanagement.entity.Customer;
 import com.staffmanagement.entity.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-	public List<Customer> findCustomersById(Long userId);
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+	public List<User> findUsersById(Long id);
 }

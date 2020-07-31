@@ -1,9 +1,9 @@
 package com.staffmanagement.controller.v1;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.staffmanagement.dto.CustomerDTO;
 import com.staffmanagement.dto.UserDTO;
-import com.staffmanagement.entity.User;
+import com.staffmanagement.jsonview.UserViews;
 import com.staffmanagement.service.v1.UserService;
 
 @RestController
@@ -25,40 +27,40 @@ import com.staffmanagement.service.v1.UserService;
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
-	@Autowired
-	private ModelMapper modelMapper;
-
+	@JsonView(UserViews.Detail.class)
 	@PostMapping
-	public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userdto) {
-		userdto.setId(null);
-		User user = modelMapper.map(userdto, User.class);
-		UserDTO returnUserdto = modelMapper.map(userService.addUser(user), UserDTO.class);
-		return new ResponseEntity<>(returnUserdto, HttpStatus.CREATED);
+	public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userdto) {
+		return new ResponseEntity<>(userService.addUser(userdto), HttpStatus.CREATED);
 	}
 
+	@JsonView(UserViews.Detail.class)
 	@PutMapping("/{id}")
 	public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userdto, @PathVariable("id") Long id) {
-		User user = modelMapper.map(userdto, User.class);
-		user.setId(id);
-		UserDTO returnUserdto = modelMapper.map(userService.update(user), UserDTO.class);
-		return new ResponseEntity<>(returnUserdto, HttpStatus.OK);
+		return new ResponseEntity<>(userService.update(userdto, id), HttpStatus.OK);
 	}
 
+	@JsonView(UserViews.Summary.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
-		User user = userService.getUserById(id);
-		UserDTO userdto = modelMapper.map(user, UserDTO.class);
-		return new ResponseEntity<>(userdto, HttpStatus.OK);
+		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
 	}
 
+	@JsonView(UserViews.Summary.class)
 	@GetMapping
 	public ResponseEntity<List<UserDTO>> getAllUsers() {
-		List<User> list = userService.getAllUsers();
-		List<UserDTO> listdto = list.stream().map(user -> modelMapper.map(user, UserDTO.class))
-				.collect(Collectors.toList());
-		return new ResponseEntity<>(listdto, HttpStatus.OK);
+		return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}/customers")
+	public ResponseEntity<List<CustomerDTO>> getCustomers(@PathVariable("id") Long userId) {
+		return new ResponseEntity<>(userService.getCustomersByUserId(userId), HttpStatus.OK);
+	}
+
+	@GetMapping("/count")
+	public ResponseEntity<Long> getUserCount() {
+		return new ResponseEntity<>(userService.count(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
