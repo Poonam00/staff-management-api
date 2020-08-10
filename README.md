@@ -144,5 +144,22 @@ Github Action to build jar of code code while performing push operation
    Whenever you try to push your code to that branch a maven action will be performed. If the file syntax or anything goes wrong, the workflow will fail
    
 ---
+## Run docker image in google cloud instance
+Created an compute engine instance in google cloud with linux operating system and build docker image over it.
+Used Commands:
+```
+cd staff-management-api
+docker build -t app:1.0 .
+docker run -itd -p 3333:9090 -v /home/poonamsnu/springboot_docker/:/app --name springboot_docker app:1.0
+docker exec springboot_docker /bin/sh
+```
+Used mount point for docker container to save logs on the hostmachine usine `VOLUME` command in dockerfile
+
+Command to pull docker image to local repository
+```
+docker pull poonam00/springboot_docker
+```
+
+
 
 
