@@ -22,6 +22,10 @@ import com.staffmanagement.dto.UserDTO;
 import com.staffmanagement.jsonview.UserViews;
 import com.staffmanagement.service.v1.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 @RequestMapping(value = "v1/user")
 public class UserController {
@@ -63,6 +67,9 @@ public class UserController {
 		return new ResponseEntity<>(userService.count(), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Deletes a user", description = "", tags = { "user" })
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "successful operation"),
+			@ApiResponse(responseCode = "404", description = "user not found") })
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
 		userService.deleteById(id);
