@@ -159,7 +159,21 @@ Command to pull docker image to local repository
 ```
 docker pull poonam00/springboot_docker
 ```
-
+## Swagger
+### Description
+We are using OpenApi Specification 3.0(latest swagger) in this project for documentation purpose.
+### Steps
+1. add dependency
+```
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.2.32</version>
+</dependency>
+```
+2. add `@ResponseStatus` on Exception handler class to generate documentation for response code 
+3. add `@Operation` to give description to the api and `@ApiResponses` to generate documentation for possible response code of the api
+4. add `@OpenAPIDefinition` to define title, version and description of the project
 
 
 
