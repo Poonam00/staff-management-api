@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.staffmanagement.scheduler.CustomScheduler;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,6 +25,7 @@ public class UtilityController {
 	@Autowired
 	private CustomScheduler service;
 
+	@Operation(summary = "Get the header from request body")
 	@PostMapping(path = "/headers", consumes = MediaType.ALL_VALUE)
 	public Map<String, String> getHeaders(@RequestBody String req, @RequestHeader Map<String, String> headers) {
 		log.info("----getHeaders----");
@@ -31,6 +33,7 @@ public class UtilityController {
 		return headers;
 	}
 
+	@Operation(summary = "Schedule a task in another thread")
 	@PostMapping("/schedule")
 	public ResponseEntity<String> schedule() {
 		log.info("----schedule----");
