@@ -175,5 +175,7 @@ We are using OpenApi Specification 3.0(latest swagger) in this project for docum
 3. add `@Operation` to give description to the api and `@ApiResponses` to generate documentation for possible response code of the api
 4. add `@OpenAPIDefinition` to define title, version and description of the project
 
+The documentation is available at endpoint */swagger-ui.html*
+
 
 
