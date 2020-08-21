@@ -159,6 +159,7 @@ Command to pull docker image to local repository
 ```
 docker pull poonam00/springboot_docker
 ```
+---
 ## Swagger
 ### Description
 We are using OpenApi Specification 3.0(latest swagger) in this project for documentation purpose.
@@ -176,6 +177,19 @@ We are using OpenApi Specification 3.0(latest swagger) in this project for docum
 4. add `@OpenAPIDefinition` to define title, version and description of the project
 
 The documentation is available at endpoint */swagger-ui.html*
+
+---
+## Spring Cloud Config
+### Description
+Spring Cloud Config is Spring's client/server approach for storing and serving configuration files across multiple applications and environments.
+It generally have 3 modules:
+1. Config Server : It is a spring boot application which fetch config client's configurations from git repo
+2. Config Client : It loads its application.properties files from git repo through cinfig server
+3. Git Config Repo : Here we store all the application.properties for different environments.
+
+Config server is availabe at 
+
+
 
 
 
