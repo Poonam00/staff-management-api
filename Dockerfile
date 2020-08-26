@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.6.3-jdk-8
 VOLUME /app
-COPY ./target/*.jar app.jar
-ENTRYPOINT ["java","-jar","-Dspring.profiles.active=docker","/app.jar"]
+COPY ./ ./
+RUN mvn clean package
+ENTRYPOINT ["java", "-jar","-Dspring.profiles.active=docker", "target/staff_management-0.2.0.jar"]
