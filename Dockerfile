@@ -1,7 +1,9 @@
-FROM maven:3.6.1-jdk-8-alpine AS MAVEN_BUILD
+FROM maven:3.6.0-jdk-11-slim AS MAVEN_BUILD
+
+WORKDIR /project
  
 # copy the pom and src code to the container
-COPY ./ ./
+COPY ./ /project
  
 # package our application code
 RUN mvn clean package
@@ -10,7 +12,7 @@ RUN mvn clean package
 FROM openjdk:8-jre-alpine3.9
  
 # copy only the artifacts we need from the first stage and discard the rest
-COPY --from=MAVEN_BUILD /staff-management-api/target/staff_management-0.2.0.jar /app.jar
+COPY --from=MAVEN_BUILD /project/target/staff_management-0.2.0.jar /app.jar
  
 # set the startup command to execute the jar
 CMD ["java", "-jar","-Dspring.profiles.active=docker", "/app.jar"]
