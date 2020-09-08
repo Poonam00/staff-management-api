@@ -25,6 +25,8 @@
 		<sonar.projectKey>Poonam00_staff-management-api</sonar.projectKey>
 		<sonar.organization>poonam00</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>poonamsnu@gmail.com</sonar.login>
+		<sonar.password>poonam93evr</sonar.password>
 	</properties>
 
 	<dependencies>
