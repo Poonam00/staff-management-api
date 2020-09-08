@@ -5,4 +5,9 @@ public interface UserViews {
 	}
 	public static interface Detail extends Summary {
 	}
+	
+	/*
+	 * public static interface Summary { } public static interface Detail extends
+	 * Summary { }
+	 */
 }
