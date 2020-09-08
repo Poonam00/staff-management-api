@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,11 +26,15 @@ public class UtilityController {
 	private CustomScheduler service;
 
 	@Operation(summary = "Get the header from request body")
-	@PostMapping(path = "/headers", consumes = MediaType.ALL_VALUE)
-	public Map<String, String> getHeaders(@RequestBody String req, @RequestHeader Map<String, String> headers) {
+	@GetMapping(path = "/headers", consumes = MediaType.ALL_VALUE)
+	public Map<String, String> getHeaders(@RequestHeader Map<String, String> headers) {
 		log.info("----getHeaders----");
-		log.info(req);
 		return headers;
+	}
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "Hello World";
 	}
 
 	@Operation(summary = "Schedule a task in another thread")
