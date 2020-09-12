@@ -23,7 +23,7 @@ public class StaffManagementExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(DataAccessException.class)
+	@ExceptionHandler({DataAccessException.class, DataNotFoundException.class})
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ResponseEntity<Object> handleValidationError(DataAccessException ex) {
 		log.error("handleValidationError: ", ex.getLocalizedMessage());

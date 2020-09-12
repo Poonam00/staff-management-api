@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.staffmanagement.dto.CustomerDTO;
 import com.staffmanagement.dto.UserDTO;
 import com.staffmanagement.entity.Customer;
+import com.staffmanagement.exceptionhandler.DataNotFoundException;
 import com.staffmanagement.repository.CustomerRepository;
 
 @Service
@@ -36,8 +37,12 @@ public class CustomerService {
 
 	public CustomerDTO getCustomerById(Long id) {
 		Optional<Customer> opt = custmerRepository.findById(id);
-		Customer customer = opt.isPresent() ? opt.get() : new Customer();
-		return modelMapper.map(customer, CustomerDTO.class);
+		if (opt.isPresent()) {
+			Customer customer = opt.get();
+			return modelMapper.map(customer, CustomerDTO.class);
+		} else {
+			throw new DataNotFoundException("customer not found with id-" + id);
+		}
 	}
 
 	public List<CustomerDTO> getAllCustomers() {

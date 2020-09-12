@@ -48,6 +48,7 @@ public class UserController {
 	@JsonView(UserViews.Summary.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
+		System.out.println(id);
 		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
 	}
 
