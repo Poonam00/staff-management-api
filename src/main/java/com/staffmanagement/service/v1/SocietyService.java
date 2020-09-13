@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.staffmanagement.dto.CustomerDTO;
 import com.staffmanagement.dto.SocietyDTO;
 import com.staffmanagement.entity.Society;
+import com.staffmanagement.exceptionhandler.DataNotFoundException;
 import com.staffmanagement.repository.SocietyRepository;
 
 @Service
@@ -36,8 +37,12 @@ public class SocietyService {
 
 	public SocietyDTO getSocietyById(Long id) {
 		Optional<Society> opt = societyRepository.findById(id);
-		Society society = opt.isPresent() ? opt.get() : new Society();
-		return modelMapper.map(society, SocietyDTO.class);
+		if (opt.isPresent()) {
+			Society society = opt.get();
+			return modelMapper.map(society, SocietyDTO.class);
+		} else {
+			throw new DataNotFoundException("society not found with id-" + id);
+		}
 	}
 
 	public List<SocietyDTO> getAllSocieties() {

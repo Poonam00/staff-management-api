@@ -209,6 +209,26 @@ For the config client to access the configurations from git repo following step 
 3. Use `@RefreshScope` in the class where configuration properties are used
 4. Enable actuator's `/refresh` end point to refresh the bean of configuration when some congifiguration changes are needed to be reflected
 ---
+## Caching
+### Description
+Cache is used to improve performance by storing the data temporarily and reduces the number of database hits as much as possible.
+### Steps:
+1. Add cache dependency to enable simple cache in spring boot project.
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+```
+2. Enable Caching by using annotation `@EnableCaching`. The auto-configuration enables caching and setup a CacheManager. Spring provides a ConcurrentHashMap as default cache, but we can override CacheManager to register external cache providers as well easily.
+
+Caching Annotations involves:
+- `@Cacheable`: defines a cache for a method's return value. It initializes a cache with the name provided in the attributes and uses key to store object with key-value pair. If no key is specified, by default hashcode is used as key.
+- `@CachePut`: used to update the cache.
+- `@CacheEvict`: it removes the entry being deleted. We can also clear the entire cache by using attribute `allEntries=true`.
+- `@CacheConfig`: it is a class level annotation that provides a common cache-related setting.
+- `@Caching`: used when we need both annotations `@CachePut` or `@CacheEvict` at the same time on the same method.
+---
 
 
 
